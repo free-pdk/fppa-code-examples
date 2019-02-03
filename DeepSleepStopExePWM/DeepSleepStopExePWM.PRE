@@ -1,0 +1,30 @@
+
+.CHIP	PMS150C
+//{{PADAUK_CODE_OPTION
+	.Code_Option	Bootup_Time	Slow
+	.Code_Option	Drive		Normal
+	.Code_Option	LVR		2.0V
+	.Code_Option	Security	Disable		// Security Disable
+//}}PADAUK_CODE_OPTION
+
+//	----------- IMPORTANT -------------
+//	Please don't change the follow code
+//	It only be used for internal Mini-C
+//	-----------------------------------
+
+	.JMP	FPPA0	<?>, 0
+.ROMADR	0x10
+	.PUT	Interrupt <reti>, 8
+
+// Padauk SOT-23-6 adapter pinout
+// signal name, SOT-23-6 pin -> DIP 14 adapter pin:
+//   PA4 1 -> 9
+//   GND 2 -> 11
+//   PA6 3 -> 6
+//   PA5 4 -> 7
+//   VDD 5 -> 4
+//   PA3 6 -> 8
+
+// definitions for custom JP7 pin mapping (see writer manual chapter 5)
+// 14 pins, no open/short test, no shift
+.writer package 14, 4, 32, 8, 9, 7, 6, 32, 11, 0x0000, 0x0000, 0
